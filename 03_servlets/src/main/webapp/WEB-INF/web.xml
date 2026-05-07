@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    web.xml — the deployment descriptor.
+
+    Two ways to register a Servlet:
+      1. @WebServlet("/path") annotation on the class    (preferred since Servlet 3.0)
+      2. <servlet> + <servlet-mapping> in this file       (older, still works)
+
+    Most of our examples use the annotation. This file exists so the
+    WAR is a well-formed Jakarta web app and so you've seen the XML form once.
+-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Phase 3 — Servlets</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
