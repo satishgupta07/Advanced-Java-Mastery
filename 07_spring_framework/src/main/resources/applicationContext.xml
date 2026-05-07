@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    XML configuration — Spring's ORIGINAL way to declare beans.
+
+    You'll see this in legacy projects forever. Modern projects use
+    Java config (Step 4) or Spring Boot's auto-config. We cover XML
+    once so you can read it without panicking when you encounter it.
+
+    Each <bean> is a recipe:
+      id          → name to look up the bean by
+      class       → fully-qualified class name to instantiate
+      <constructor-arg ref="..."> → which other bean to inject
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userRepository"
+          class="com.learning.spring.repository.UserRepository"/>
+
+    <bean id="userService"
+          class="com.learning.spring.service.UserService">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
+</beans>
