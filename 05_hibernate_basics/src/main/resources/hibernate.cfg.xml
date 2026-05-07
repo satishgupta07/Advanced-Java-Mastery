@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!--
+    hibernate.cfg.xml — read once at startup by HibernateUtil.
+
+    Three things this file does:
+      1. Tells Hibernate HOW to connect to the database (driver + URL + credentials).
+      2. Tells Hibernate WHICH dialect to use (MySQL grammar quirks).
+      3. Lists the entity classes that should be scanned for @Entity annotations.
+
+    Spring Boot users won't touch a file like this — application.properties
+    is the equivalent there. But it's the canonical Hibernate config form
+    and you'll see it in legacy projects forever.
+-->
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- ---- Connection ---- -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/learning_db</property>
+        <property name="hibernate.connection.username">learner</property>
+        <property name="hibernate.connection.password">learner_pw</property>
+
+        <!-- ---- Dialect: which SQL grammar to emit ---- -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- ---- Visibility while learning ---- -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!--
+            hbm2ddl.auto controls whether Hibernate touches your schema:
+              validate  - check the mapping matches existing tables (recommended)
+              update    - apply non-destructive changes (handy for dev)
+              create    - drop and recreate tables on startup (DESTRUCTIVE)
+              none      - do nothing
+            We use `validate` because the schema already exists from Phase 0.
+        -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <!-- ---- Entities to scan ---- -->
+        <mapping class="com.learning.hibernate.model.User"/>
+
+    </session-factory>
+</hibernate-configuration>
