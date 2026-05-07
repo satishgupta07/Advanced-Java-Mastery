@@ -1,0 +1,41 @@
+### List users
+GET http://localhost:8080/api/users
+
+### Get one user
+GET http://localhost:8080/api/users/1
+
+### Create user
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{ "name": "Mia Brown", "email": "mia@example.com" }
+
+### List products
+GET http://localhost:8080/api/products
+
+### Place an order — happy path
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{ "userId": 1, "productId": 1, "quantity": 1 }
+
+### Place an order — should 409 (insufficient stock)
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{ "userId": 1, "productId": 1, "quantity": 99999 }
+
+### Place an order — should 404 (no such user)
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{ "userId": 9999, "productId": 1, "quantity": 1 }
+
+### Place an order — should 400 (validation: quantity must be ≥ 1)
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{ "userId": 1, "productId": 1, "quantity": 0 }
+
+### List orders (with user + product joined)
+GET http://localhost:8080/api/orders
